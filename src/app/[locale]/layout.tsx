@@ -51,7 +51,12 @@ export default function RootLayout({
   }
 
   return (
-    <ClerkProvider localization={getLocalization()}>
+    <ClerkProvider
+      localization={getLocalization()}
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      signInForceRedirectUrl="/"
+      afterSignOutUrl="/"
+    >
       <html lang={locale}>
         <body className={inter.className}>
           <NextIntlClientProvider

@@ -34,11 +34,3 @@ export default function Section({ className, description, title, subtitle, child
     <div className="mx-auto max-w-screen-lg">{children}</div>
   </div>
 }
-
-Section.defaultProps = {
-  children: undefined,
-  title: undefined,
-  subtitle: undefined,
-  description: undefined,
-  className: undefined,
-}
