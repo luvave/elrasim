@@ -1,6 +1,8 @@
 {
   "Index": {
-    "title": "Ahoj světe!"
+    "title": "Elrasim!",
+    "pleaseLogin": "Prosíme přihlašte se",
+    "pleaseLoginDescription": "Pro zobrazení nástroje se prosím přihlašte"
   },
   "Navbar": {
     "links": {
@@ -9,5 +11,11 @@
       "signUp": "Registrovat",
       "signOut": "Odhlásit"
     }
+  },
+  "About": {
+    "title": "O nás",
+    "whoAreWe": "Kdo jsme?",
+    "franta": "Franta Křivánek",
+    "lukas": "Lukáš Vévar"
   }
 }

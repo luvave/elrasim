@@ -1,6 +1,8 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "title": "Elrasim!",
+    "pleaseLogin": "Please login",
+    "pleaseLoginDescription": "You need to login for using this tool"
   },
   "Navbar": {
     "links": {
@@ -9,5 +11,11 @@
       "signUp": "Register",
       "signOut": "Logout"
     }
+  },
+  "About": {
+    "title": "About us",
+    "whoAreWe": "Who we are",
+    "franta": "Franta Křivánek",
+    "lukas": "Lukáš Vévar"
   }
 }

@@ -2,8 +2,8 @@ import { AppName } from '@/config/AppConfig';
 import Image from 'next/image';
 import trolleybusIcon from '../../public/assets/trolleybus-icon.svg';
 
-export const AppLogo = () => (
-  <div className='flex items-center text-xl font-semibold'>
+export default function AppLogo() {
+  return <div className='flex items-center text-xl font-semibold'>
     <Image
       priority
       src={trolleybusIcon}
@@ -12,4 +12,4 @@ export const AppLogo = () => (
     />
     {AppName}
   </div>
-);
+}

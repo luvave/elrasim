@@ -2,15 +2,15 @@ import { cn } from '@/utils/styles';
 import { ReactNode } from 'react';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   title?: string;
   subtitle?: string;
   description?: string;
   className?: string;
 }
 
-export const Section = ({ className, description, title, subtitle, children }: Props) => (
-  <div className={cn('px-3 py-16', className)}>
+export default function Section({ className, description, title, subtitle, children }: Props) {
+  return <div className={cn('px-3 py-16', className)}>
     {(title || subtitle || description) && (
       <div className="mx-auto mb-12 max-w-screen-md text-center">
         {subtitle && (
@@ -33,4 +33,12 @@ export const Section = ({ className, description, title, subtitle, children }: P
 
     <div className="mx-auto max-w-screen-lg">{children}</div>
   </div>
-);
+}
+
+Section.defaultProps = {
+  children: undefined,
+  title: undefined,
+  subtitle: undefined,
+  description: undefined,
+  className: undefined,
+}

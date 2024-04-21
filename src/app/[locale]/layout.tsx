@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../../css/globals.css';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { ClerkProvider } from '@clerk/nextjs'
+import { csCZ, enUS } from '@clerk/localizations';
+import Navbar from '@/containers/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,16 +43,28 @@ export default function RootLayout({
 
   const messages = useMessages();
 
+  const getLocalization = () => {
+    if (locale === 'cs') {
+      return csCZ;
+    }
+    return enUS;
+  }
+
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <NextIntlClientProvider
-          locale={locale}
-          messages={messages}
-        >
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <ClerkProvider localization={getLocalization()}>
+      <html lang={locale}>
+        <body className={inter.className}>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={messages}
+          >
+            <div className="flex h-full w-full flex-col">
+              <Navbar />
+              {children}
+            </div>
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

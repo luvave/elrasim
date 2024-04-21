@@ -74,3 +74,11 @@
       @apply bg-background text-foreground;
     }
   }
+
+body, #root, .content{
+  height: 100vh;
+}
+
+.leaflet-control { z-index: 0 !important}
+.leaflet-pane { z-index: 0 !important}
+.leaflet-top, .leaflet-bottom {z-index: 0 !important}
