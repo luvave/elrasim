@@ -1,0 +1,13 @@
+{
+  "Index": {
+    "title": "Ahoj světe!"
+  },
+  "Navbar": {
+    "links": {
+      "about": "O nás",
+      "signIn": "Přihlásit",
+      "signUp": "Registrovat",
+      "signOut": "Odhlásit"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "Navbar": {
+    "links": {
+      "about": "About us",
+      "signIn": "Login",
+      "signUp": "Register",
+      "signOut": "Logout"
+    }
+  }
+}
