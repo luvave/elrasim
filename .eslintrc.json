@@ -11,8 +11,10 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "react/jsx-props-no-spreading": "warn",
-    "react/require-default-props": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "import/no-named-as-default": "off",
+    "consistent-return": "off",
     "arrow-body-style": "warn",
     "import/prefer-default-export": "warn",
     "react/function-component-definition": "warn"

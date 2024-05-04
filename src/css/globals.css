@@ -82,3 +82,6 @@ body, #root, .content{
 .leaflet-control { z-index: 0 !important}
 .leaflet-pane { z-index: 0 !important}
 .leaflet-top, .leaflet-bottom {z-index: 0 !important}
+.leaflet-control-container .leaflet-routing-container-hide {
+  display: none;
+}

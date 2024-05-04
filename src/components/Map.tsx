@@ -1,18 +1,22 @@
 'use client';
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
+import MapContent, { MapContentProps } from '@/components/MapContent';
 
-interface Props {
+interface Props extends Omit<MapContentProps, 'defaultPosition'> {
   width: number | string;
   height: number | string;
+  defaultPosition?: number[]
 }
 
 export default function Map(props: Props) {
-  const { height, width } = props;
-  const position = [50.0755478, 14.4548894];
+  const { height, width, defaultPosition, ...rest } = props;
+  const initialPosition = defaultPosition || [50.0755478, 14.4548894];
+
+  if (initialPosition.length < 2) return null
 
   return (
     <MapContainer
@@ -21,8 +25,8 @@ export default function Map(props: Props) {
         width
       }}
       center={{
-        lat: position[0],
-        lng: position[1]
+        lat: initialPosition[0],
+        lng: initialPosition[1]
       }}
       zoom={20}
       scrollWheelZoom
@@ -32,16 +36,7 @@ export default function Map(props: Props) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      <Marker
-        position={{
-          lat: position[0],
-          lng: position[1]
-        }}
-      >
-        <Popup>
-          Tady to začalo haha
-        </Popup>
-      </Marker>
+      <MapContent defaultPosition={initialPosition} {...rest} />
     </MapContainer>
   );
 }
