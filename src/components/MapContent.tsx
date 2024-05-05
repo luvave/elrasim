@@ -1,10 +1,13 @@
 'use client';
 
-import {Marker, Popup, useMapEvents} from 'react-leaflet';
-import {useEffect, useMemo, useState} from 'react';
+import { Marker, Popup, useMapEvents } from 'react-leaflet';
+import { useEffect, useMemo, useState } from 'react';
 
+import * as L from "leaflet";
 import "leaflet-routing-machine";
+import "lrm-graphhopper";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import { LeafletEventHandlerFnMap } from "leaflet";
 
 export interface MapContentProps {
   defaultPosition: number[];
@@ -38,9 +41,11 @@ export default function MapContent({ defaultPosition }: MapContentProps) {
     const routingControl = L.Routing.control({
       waypoints: markers.map((m) => L.latLng(m.lat, m.lng)),
       show: false,
-      draggableWaypoints: false,
       addWaypoints: false,
       routeWhileDragging: false,
+      // Routing services does not seem to be included within the types
+      // @ts-ignore
+      router: new L.Routing.GraphHopper(process.env.graphhopperKey),
     }).addTo(map);
 
     return () => {
@@ -48,11 +53,11 @@ export default function MapContent({ defaultPosition }: MapContentProps) {
     }
   }, [map, markers]);
 
-  const markerEventHandlers = useMemo(() => ({
-    dragend(e) {
+  const markerEventHandlers: LeafletEventHandlerFnMap = useMemo(() => ({
+    dragend: (e) => {
       setMarkers((prev) => {
         const tmp = [...prev];
-        const touchedMarkerId = prev.findIndex((m) => m.id === e.target.options.id);
+        const touchedMarkerId = prev.findIndex((m) => m.id === e.target.options["marker-id"]);
         tmp[touchedMarkerId] = {
           lat: e.target.getLatLng().lat,
           lng: e.target.getLatLng().lng,
@@ -80,7 +85,7 @@ export default function MapContent({ defaultPosition }: MapContentProps) {
       {markers.map(({ id, lng, lat}) => (
         <Marker
           key={id}
-          id={id}
+          marker-id={id}
           position={[lat, lng]}
           draggable
           autoPan
